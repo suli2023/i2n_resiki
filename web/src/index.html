@@ -10,36 +10,68 @@
   <body>
     <div class="container">
       <h1>Dolgozók</h1>
-      
-      <div class="addForm">
 
-        <div class="input">
-          <label for="name"
-          class="form-label">Név</label>
-          <input type="text" id="name"
-          class="form-control">
-        </div>
-        
-        <div class="input">
-          <label for="city"
-          class="form-lable">Település</label>
-          <input type="text" id="city"
-          class="form-control">
-        </div>
-        
-        <div class="input">
-          <label for="salary"
-          class="form-lable">Fizetés</label>
-          <input type="text" id="salary"
-          class="form-control">
-        </div>
-        <div>
-          <button class="btn btn-primary mt-2"
-          id="addButton">
-            Mentés
-          </button>
+      <!-- Button trigger modal -->
+      <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#operatorModal"
+      onclick="showAddModal()">
+        Hozzáadás
+      </button>
+
+      <!-- Modal -->
+      <div class="modal fade" id="operatorModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h1 class="modal-title fs-5" id="operatorModalLabel">Hozzáadás</h1>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+
+
+              <div class="addForm">
+
+                <div class="input">
+                  <label for="id"
+                  class="form-label">Id</label>
+                  <input type="text" id="id"
+                  class="form-control" readonly>
+                </div>
+
+                <div class="input">
+                  <label for="name"
+                  class="form-label">Név</label>
+                  <input type="text" id="name"
+                  class="form-control">
+                </div>
+                
+                <div class="input">
+                  <label for="city"
+                  class="form-lable">Település</label>
+                  <input type="text" id="city"
+                  class="form-control">
+                </div>
+                
+                <div class="input">
+                  <label for="salary"
+                  class="form-lable">Fizetés</label>
+                  <input type="text" id="salary"
+                  class="form-control">
+                </div>
+              </div>
+
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Bezárás</button>
+              <button type="button" class="btn btn-primary"
+              id="addButton">Mentés</button>
+            </div>
+          </div>
         </div>
       </div>
+
+
+
+      
 
       <table class="table table-striped">
         <thead>
@@ -55,6 +87,7 @@
       </table>
 
     </div>
+    <script src="bootstrap.js"></script>
     <script src="app.js"></script>
   </body>
 </html>

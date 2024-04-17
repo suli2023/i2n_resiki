@@ -1,16 +1,40 @@
 {
-    "employees": [
-        {
-            "id": 1,
-            "name": "Lant Géza",
-            "city": "Szeged",
-            "salary": 342
-        },
-        {
-            "id": 2,
-            "name": "Erős István",
-            "city": "Szolnok",
-            "salary": 327
-        }
-    ]
+  "employees": [
+    {
+      "id": 1,
+      "name": "Lant Géza",
+      "city": "Szeged",
+      "salary": 342
+    },
+    {
+      "id": 2,
+      "name": "Erős István",
+      "city": "Szolnok",
+      "salary": 327
+    },
+    {
+      "name": "Csoda Ernő",
+      "city": "Pécs",
+      "salary": 392,
+      "id": 3
+    },
+    {
+      "name": "Aranyos Lajos",
+      "city": "Szeged",
+      "salary": "391",
+      "id": 4
+    },
+    {
+      "name": "aaaa",
+      "city": "bbb",
+      "salary": "333",
+      "id": 5
+    },
+    {
+      "name": "aasa",
+      "city": "bbdf",
+      "salary": "3434",
+      "id": 6
+    }
+  ]
 }

@@ -1,35 +1,57 @@
 const doc = {
     empsBody: document.querySelector("#empsBody"),
-    addButton: document.querySelector('#addButton') 
+    addButton: document.querySelector('#addButton'),
+    idInput: document.querySelector('#id'),
+    nameInput: document.querySelector('#name'),
+    cityInput: document.querySelector('#city'),
+    salaryInput: document.querySelector('#salary'),
+    operatorModalLabel: document.querySelector('#operatorModalLabel')
 }
 
 const state = {
-    url:  'http://localhost:8000/employees'
+    host:  'http://localhost:8000',
+    endpoint: 'employees',
+    name: 'névtelen',
+    city: 'ismeretlen',
+    salary: 0
 }
-
-
 
 doc.addButton.addEventListener('click', () => {
     console.log('Mentés...')
+    setEmployeeState()
     addEmployee()
 })
 
+getEmployees()
+
+function setEmployeeState() {
+    state.name = doc.nameInput.value
+    state.city = doc.cityInput.value
+    state.salary = doc.salaryInput.value
+    doc.nameInput.value = ''
+    doc.cityInput.value = ''
+    doc.salaryInput.value = ''
+}
+
 function addEmployee() {
-   fetch(state.url, {
-    method: 'post',
-    headers: {
-        "Content-Type": "application/json"
-    },
-    body: JSON.stringify({
-        name: "Csoda Ernő",
-        city: "Pécs",
-        salary: 392
-    })
+    doc.operatorModalLabel.textContent = 'Hozzáadás'
+    let url = state.host + '/' + state.endpoint
+    fetch(url, {
+        method: 'post',
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            name: state.name,
+         city: state.city,
+            salary: state.salary
+        })
    }) 
 }
 
 function getEmployees() {
-    fetch(state.url)
+    let url = state.host + '/' + state.endpoint
+    fetch(url)
     .then(response => response.json())
     .then(result => {
         console.log(result)
@@ -46,10 +68,20 @@ function renderEmployees(empList) {
             <td>${emp.city}</td>
             <td>${emp.salary}</td>
             <td>
-                <button class="btn btn-primary">
+                <button class="btn btn-primary"
+                data-id="${emp.id}"
+                data-name="${emp.name}"
+                data-city="${emp.city}"
+                data-salary="${emp.salary}"
+                onclick="updateEmployee(this)"
+                data-bs-toggle="modal"
+                data-bs-target="#operatorModal"
+                >
                     Szerkesztés
                 </button>
-                <button class="btn btn-danger">
+                <button class="btn btn-danger"
+                onclick="deleteEmployee(${emp.id})"
+                >
                     Törlés
                 </button>
             </td>
@@ -58,4 +90,31 @@ function renderEmployees(empList) {
         console.log(emp.city)
     });
 }
-getEmployees()
+
+function deleteEmployee(id) {
+    const url = state.host + '/' + 
+        state.endpoint +
+        '/' + id
+    console.log(url)
+    fetch(url, {method: 'delete'})
+}
+
+function updateEmployee(source) {
+    doc.operatorModalLabel.textContent = 'Szerkesztés'
+    const url = state.host + '/' + 
+        state.endpoint +
+        '/' + id
+        console.log(source.dataset.id)
+        doc.idInput.value = source.dataset.id
+        doc.nameInput.value = source.dataset.name
+        doc.cityInput.value = source.dataset.city
+        doc.salaryInput.value = source.dataset.salary
+}
+
+function showAddModal() {
+    doc.operatorModalLabel.textContent = "Hozzáadás"
+}
+
+function deleteOperatorContent() {
+    
+}
