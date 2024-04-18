@@ -1,6 +1,6 @@
 const doc = {
     empsBody: document.querySelector("#empsBody"),
-    addButton: document.querySelector('#addButton'),
+    multiButton: document.querySelector('#multiButton'),
     idInput: document.querySelector('#id'),
     nameInput: document.querySelector('#name'),
     cityInput: document.querySelector('#city'),
@@ -11,12 +11,14 @@ const doc = {
 const state = {
     host:  'http://localhost:8000',
     endpoint: 'employees',
+    id: 0,
     name: 'névtelen',
     city: 'ismeretlen',
-    salary: 0
+    salary: 0,
+    mode: 'add'
 }
 
-doc.addButton.addEventListener('click', () => {
+doc.multiButton.addEventListener('click', () => {
     console.log('Mentés...')
     setEmployeeState()
     addEmployee()
@@ -25,12 +27,11 @@ doc.addButton.addEventListener('click', () => {
 getEmployees()
 
 function setEmployeeState() {
+    state.id = doc.idInput.value
     state.name = doc.nameInput.value
     state.city = doc.cityInput.value
     state.salary = doc.salaryInput.value
-    doc.nameInput.value = ''
-    doc.cityInput.value = ''
-    doc.salaryInput.value = ''
+    deleteOperatorContent()
 }
 
 function addEmployee() {
@@ -113,8 +114,12 @@ function updateEmployee(source) {
 
 function showAddModal() {
     doc.operatorModalLabel.textContent = "Hozzáadás"
+    deleteOperatorContent()
 }
 
 function deleteOperatorContent() {
-    
+    doc.idInput.value = ''
+    doc.nameInput.value = ''
+    doc.cityInput.value = ''
+    doc.salaryInput.value = ''
 }
